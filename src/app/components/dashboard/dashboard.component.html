@@ -1,0 +1,17 @@
+<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" *ngIf="user">
+        <div class="card">
+            <div class="card-header">
+              Detalles del usuario
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Nombre: {{user.name}}</h5>
+              <h5 class="card-title">Email: {{user.email}}</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a routerLink="/logout" class="btn btn-primary">Logout</a>
+            </div>
+          </div>
+        
+    </div>
+  
+</div>
