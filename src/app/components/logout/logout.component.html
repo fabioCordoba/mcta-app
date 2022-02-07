@@ -1,1 +1,20 @@
-<p>logout works!</p>
+<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" >
+        <div class="card">
+            <div class="card-header">
+              Log Out
+            </div>
+            <div class="card-body">
+              <p class="card-text">Logged out from all devices?</p>
+              <div class="row mb-3">
+                  <div class="col">
+                      <input type="checkbox" name="allDevices" [(ngModel)]="checkbox"> All Devices
+                  </div>
+              </div>
+              <button (click)="logout()" class="btn btn-primary">Logout</button>
+            </div>
+          </div>
+        
+    </div>
+  
+</div>

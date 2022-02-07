@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,23 +10,31 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
+  constructor(private auth:AuthenticationService, private router:Router) { }
 
   user:any;
   ngOnInit(): void {
-    const user:any = localStorage.getItem('user');
-    const userObjet = JSON.parse(user);
-    const token = userObjet.token;
+    
+    this.auth.status().subscribe((res)=>{
+      console.log('res Dash: '+res);
+      if(res == false){
+        this.router.navigate(['/login']);
+      }else{
+        this.auth.user().subscribe((res)=>{
+          this.user = res;
+        },(err)=>{
+          console.log(err.error);
+          if(err.error.error == "Unauthenticated."){
+            localStorage.removeItem('user');
+            this.auth.toggleLogin(false);
+            this.router.navigate(['/']);
+          }
+        });
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      }
     });
 
-    this.http.get('https://mcta.com/api/user',{headers: headers}).subscribe((res)=>{
-      this.user = res;
-    },(err)=>{
-      console.log(err);
-    });
+    
   }
 
 }

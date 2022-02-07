@@ -273,14 +273,44 @@
             </div>
           </div>
         </nav>
-        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <a routerLink="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0" >
+          <a routerLink="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900" *ngIf="!LoggedIn">
             Sign in
           </a>
-          <a routerLink="/register" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+          <a routerLink="/register" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700" *ngIf="!LoggedIn">
             Sign up
           </a>
+          <div class="ml-3 relative" *ngIf="LoggedIn">
+            <div class=" dropdown" >
+  
+              <button *ngIf="username" class="dropdown-toggle inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" >
+                  {{username}}
+              </button>
+            
+              <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu absolute z-50 mt-2 w-48 rounded-md shadow-lg origin-top-right right-0"  style="padding: 0px;">
+                <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+                  <!-- Account Management -->
+                  <div class="block px-4 py-2 text-xs text-gray-400">
+                      Manage Account
+                  </div>
+            
+                  <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" routerLink="/dashboard">Dashboard</a>
+            
+                  
+                  <div class="border-t border-gray-100"></div>
+            
+                  <!-- Authentication -->
+                  <form >
+                      <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" routerLink="/logout">Log Out</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
+
+
       </div>
     </div>
   
